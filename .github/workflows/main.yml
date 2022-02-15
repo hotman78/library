@@ -19,7 +19,7 @@ jobs:
         with:
           skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
           download-from: ${{ secrets.LIBRARY_PATH }}
-          download-to: ./
+          download-to: ./lib
 
           # For those who set up Google Drive API client ID and secret themselves
           google-client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
@@ -29,4 +29,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
-        run: oj-verify all -j 2
+        run: |
+          cd ./lib
+          oj-verify all -j 2
