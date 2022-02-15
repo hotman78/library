@@ -31,4 +31,14 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           cd ./lib
-          oj-verify all -j 2
+          oj-verify run -j 2
+      - name: Upload to Google Drive
+        uses: satackey/action-google-drive@v1
+        with:
+          skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
+          upload-from: ./lib
+          upload-to: ${{ secrets.LIBRARY_PATH }}
+
+          # For those who set up Google Drive API client ID and secret themselves
+          google-client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
+          google-client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
